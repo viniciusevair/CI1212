@@ -81,6 +81,9 @@
     <comp lib="0" loc="(1290,510)" name="Tunnel">
       <a name="label" val="mem_to_reg"/>
     </comp>
+    <comp lib="0" loc="(1290,550)" name="Tunnel">
+      <a name="label" val="mem_Write"/>
+    </comp>
     <comp lib="0" loc="(1770,310)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="data_FU_selector"/>
@@ -198,9 +201,12 @@
     <wire from="(1080,350)" to="(1260,350)"/>
     <wire from="(1080,370)" to="(1250,370)"/>
     <wire from="(1080,390)" to="(1240,390)"/>
-    <wire from="(1080,410)" to="(1090,410)"/>
-    <wire from="(1090,410)" to="(1090,580)"/>
+    <wire from="(1080,410)" to="(1230,410)"/>
+    <wire from="(1080,430)" to="(1090,430)"/>
+    <wire from="(1090,430)" to="(1090,580)"/>
     <wire from="(120,90)" to="(120,100)"/>
+    <wire from="(1230,410)" to="(1230,550)"/>
+    <wire from="(1230,550)" to="(1290,550)"/>
     <wire from="(1240,210)" to="(1280,210)"/>
     <wire from="(1240,390)" to="(1240,510)"/>
     <wire from="(1240,40)" to="(1240,210)"/>
@@ -1750,7 +1756,7 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
     <comp lib="0" loc="(140,120)" name="Tunnel">
-      <a name="label" val="first_we_and_type"/>
+      <a name="label" val="first_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(1460,530)" name="Tunnel">
@@ -1770,7 +1776,7 @@
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(150,510)" name="Tunnel">
-      <a name="label" val="second_write_enabler"/>
+      <a name="label" val="second_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(150,60)" name="Splitter">
@@ -1788,11 +1794,11 @@
       <a name="width" val="6"/>
     </comp>
     <comp lib="0" loc="(150,900)" name="Tunnel">
-      <a name="label" val="third_write_enabler"/>
+      <a name="label" val="third_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(160,1290)" name="Tunnel">
-      <a name="label" val="fourth_write_enabler"/>
+      <a name="label" val="fourth_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(160,450)" name="Splitter">
@@ -1939,17 +1945,33 @@
     </comp>
     <comp lib="0" loc="(2090,1630)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="first_PC_jump"/>
+      <a name="label" val="first_mem_Write"/>
     </comp>
     <comp lib="0" loc="(2090,1670)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="second_PC_jump"/>
+      <a name="label" val="second_mem_Write"/>
     </comp>
     <comp lib="0" loc="(2090,1710)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="third_PC_jump"/>
+      <a name="label" val="third_mem_Write"/>
     </comp>
     <comp lib="0" loc="(2090,1750)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="fourth_mem_Write"/>
+    </comp>
+    <comp lib="0" loc="(2090,1800)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="first_PC_jump"/>
+    </comp>
+    <comp lib="0" loc="(2090,1840)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="second_PC_jump"/>
+    </comp>
+    <comp lib="0" loc="(2090,1880)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="third_PC_jump"/>
+    </comp>
+    <comp lib="0" loc="(2090,1920)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="fourth_PC_jump"/>
     </comp>
@@ -2008,6 +2030,12 @@
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(2240,1690)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="mem_write"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(2240,1860)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PC_jump"/>
@@ -2071,7 +2099,7 @@
     </comp>
     <comp lib="0" loc="(540,1250)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="third_write_enabler"/>
+      <a name="label" val="third_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(540,1290)" name="Tunnel">
@@ -2109,7 +2137,7 @@
     </comp>
     <comp lib="0" loc="(540,1640)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="fourth_write_enabler"/>
+      <a name="label" val="fourth_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(540,1680)" name="Tunnel">
@@ -2147,7 +2175,7 @@
     </comp>
     <comp lib="0" loc="(540,470)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="first_we_and_type"/>
+      <a name="label" val="first_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(540,510)" name="Tunnel">
@@ -2185,7 +2213,7 @@
     </comp>
     <comp lib="0" loc="(540,860)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="second_write_enabler"/>
+      <a name="label" val="second_register_handler"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(540,900)" name="Tunnel">
@@ -2275,6 +2303,9 @@
     <comp lib="1" loc="(2200,1690)" name="OR Gate">
       <a name="inputs" val="4"/>
     </comp>
+    <comp lib="1" loc="(2200,1860)" name="OR Gate">
+      <a name="inputs" val="4"/>
+    </comp>
     <comp lib="1" loc="(700,1070)" name="NOT Gate">
       <a name="facing" val="south"/>
     </comp>
@@ -2335,7 +2366,8 @@
       <a name="addrWidth" val="4"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 4 11
-5
+410 498 400 488 252 112 c2 ca
+41 49 51 59 61 69 71 4
 </a>
       <a name="dataWidth" val="11"/>
       <a name="label" val="Instruction3_control_memory"/>
@@ -2345,7 +2377,8 @@
       <a name="addrWidth" val="4"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 4 11
-4
+410 498 400 488 252 112 c2 ca
+41 49 51 59 61 69 71 4
 </a>
       <a name="dataWidth" val="11"/>
       <a name="label" val="Instruction0_control_memory"/>
@@ -2355,7 +2388,8 @@
       <a name="addrWidth" val="4"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 4 11
-5
+410 498 400 488 252 112 c2 ca
+41 49 51 59 61 69 71 4
 </a>
       <a name="dataWidth" val="11"/>
       <a name="label" val="Instruction1_control_memory"/>
@@ -2365,7 +2399,8 @@
       <a name="addrWidth" val="4"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 4 11
-6
+410 498 400 488 252 112 c2 ca
+41 49 51 59 61 69 71 4
 </a>
       <a name="dataWidth" val="11"/>
       <a name="label" val="Instruction2_control_memory"/>
@@ -2604,6 +2639,10 @@
     <wire from="(2090,1670)" to="(2120,1670)"/>
     <wire from="(2090,1710)" to="(2120,1710)"/>
     <wire from="(2090,1750)" to="(2130,1750)"/>
+    <wire from="(2090,1800)" to="(2130,1800)"/>
+    <wire from="(2090,1840)" to="(2120,1840)"/>
+    <wire from="(2090,1880)" to="(2120,1880)"/>
+    <wire from="(2090,1920)" to="(2130,1920)"/>
     <wire from="(2120,1500)" to="(2120,1510)"/>
     <wire from="(2120,1510)" to="(2150,1510)"/>
     <wire from="(2120,1530)" to="(2120,1540)"/>
@@ -2612,6 +2651,10 @@
     <wire from="(2120,1680)" to="(2150,1680)"/>
     <wire from="(2120,1700)" to="(2120,1710)"/>
     <wire from="(2120,1700)" to="(2150,1700)"/>
+    <wire from="(2120,1840)" to="(2120,1850)"/>
+    <wire from="(2120,1850)" to="(2150,1850)"/>
+    <wire from="(2120,1870)" to="(2120,1880)"/>
+    <wire from="(2120,1870)" to="(2150,1870)"/>
     <wire from="(2130,1460)" to="(2130,1500)"/>
     <wire from="(2130,1500)" to="(2150,1500)"/>
     <wire from="(2130,1540)" to="(2130,1580)"/>
@@ -2620,8 +2663,13 @@
     <wire from="(2130,1670)" to="(2150,1670)"/>
     <wire from="(2130,1710)" to="(2130,1750)"/>
     <wire from="(2130,1710)" to="(2150,1710)"/>
+    <wire from="(2130,1800)" to="(2130,1840)"/>
+    <wire from="(2130,1840)" to="(2150,1840)"/>
+    <wire from="(2130,1880)" to="(2130,1920)"/>
+    <wire from="(2130,1880)" to="(2150,1880)"/>
     <wire from="(2200,1520)" to="(2230,1520)"/>
     <wire from="(2200,1690)" to="(2240,1690)"/>
+    <wire from="(2200,1860)" to="(2240,1860)"/>
     <wire from="(470,1020)" to="(540,1020)"/>
     <wire from="(470,1410)" to="(540,1410)"/>
     <wire from="(470,240)" to="(540,240)"/>
