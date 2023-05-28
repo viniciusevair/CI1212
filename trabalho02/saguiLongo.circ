@@ -287,7 +287,7 @@
     <comp lib="4" loc="(490,120)" name="ROM">
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 8 8
-74 ff ff ff 6c 84 ff c8
+74 ff ff c8 6c 84 ad ff
 9a e1 59 9 b8 4d d5 d
 16 74 4*ff 32 ff 84 ff ff
 13 70 21 ff ff
