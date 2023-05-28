@@ -1,0 +1,44 @@
+Programa de amostra para as instruções do processador Sagui.
+
+|        Operação           |    Mnemonico    |  Decimal  |  Hex | Comentários
+------------------------------------------------------------------
+| R[0] = { R[0](7:4) + 4 }  |  movl 4         | 0111 0100 |  74  | R[0] = 4.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| R[2] = !R[0]              |  not R[2] R[0]  | 1100 1000 |  c8  | R[2] = -1.
+------------------------------------------------------------------
+| R[0] = { -4 + R[0](3:0) } |  movh -4        | 0110 1100 |  6c  | R[0] = -60 (1100 0100), depois R[0] = -52 (1100 1100).
+| R[1] = R[1] + R[0]        |  add R[1] R[0]  | 1000 0100 |  84  | R[1] = 4, depois R[1] = 76.
+| R[3] = R[3] && R[1]       |  and R[3] R[1]  | 1010 1101 |  ad  | R[3] = 0, depois R[3] = 64.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+------------------------------------------------------------------
+| R[2] = R[2] - R[2]        |  sub R[2] R[2]  | 1001 1010 |  9a  | R[2] = 0.
+| R[0] = R[0] >> R[1]       |  srr R[1] R[1]  | 1110 0001 |  e1  | R[0] = 12, depois R[0] = 0.
+| M[ R[1] ] = R[2]          |  st R[2] R[1]   | 0101 1001 |  59  | Guarda -1(0xff) na posição 4(0x4), depois guarda 12(0xc) na posição 76(0x4c).
+| if(R[2] == 0) PC = R[1]   |  brzr R[2] R[1] | 0000 1001 |  09  | Vai falhar nas duas primeiras execuções, vai fazer o branch na terceira. Halt do programa (porque fica preso nesta palavra).
+------------------------------------------------------------------
+| R[2] = R[2] || R[0]       |  or R[2] R[0]   | 1011 1000 |  b8  | R[2] = 12, depois R[2] = 0.
+| R[3] = M [ R[1] ]         |  ld R[3] R[1]   | 0100 1101 |  4d  | R[3] = -1, depois R[3] = 12.
+| R[1] = R[1] << R[1]       |  slr R[1] R[1]  | 1101 0101 |  d5  | R[1] = 64, depois R[1] = 0.
+| if(R[3] == 0) PC = R[1]   |  brzr R[3] R[1] | 0000 1101 |  0d  | Vai fazer o branch na primeira execução, vai falhar na segunda.     
+------------------------------------------------------------------
+| if(R[0] == 0), PC = PC+6  |  brzi 6         | 0001 0110 |  16  | Vai fazer o branch. O salto desalinhará a memória.
+| R[0] = { R[0](7:4) + 4 }  |  movl 4         | 0111 0110 |  74  | R[0] = 4.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+------------------------------------------------------------------
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| PC = PC + 02              |  ji 2           | 0011 0010 |  32  | Corrigirá 0 desalinhamento da memória fazendo um salto.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+------------------------------------------------------------------
+| R[1] = R[1] + R[0]        |  add R[1] R[0]  | 1000 0100 |  84  | R[1] += 4. Será executado duas vezes por conta do desalinhamento. R[1] = 8 no fim das execuções. 
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha.
+| if(R[0] == 0), PC = PC+3  |  brzi 3         | 0001 0011 |  13  | Vai falhar o branch.
+------------------------------------------------------------------
+| R[0] = { R[0](7:4) + 0 }  |  movl 0         | 0111 0000 |  70  | R[0] = 0 
+| PC = R[1]                 |  jr R[1]        | 0010 0001 |  21  | Salto para a instrução 8.
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha
+| NOP                       |  nop            | 1111 1111 |  ff  | Bolha
+------------------------------------------------------------------
